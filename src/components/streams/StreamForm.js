@@ -32,6 +32,7 @@ class StreamForm extends React.Component {
       <form
         onSubmit={this.props.handleSubmit(this.onSubmit)}
         className="ui form error"
+        data-test="stream-form"
       >
         <Field name="title" component={this.renderInput} label="Enter Title" />
         <Field
