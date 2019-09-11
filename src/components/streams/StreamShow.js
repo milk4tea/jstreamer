@@ -2,7 +2,7 @@ import React from "react";
 import flv from "flv.js";
 import { connect } from "react-redux";
 import { fetchStream } from "../../actions";
-import CommentInput from "../comments/CommentInput";
+import Comments from "../comments/Comments";
 
 class StreamShow extends React.Component {
   constructor(props) {
@@ -51,7 +51,7 @@ class StreamShow extends React.Component {
         <video ref={this.videoRef} style={{ width: "100%" }} controls />
         <h1>{title}</h1>
         <h5>{description}</h5>
-        <CommentInput streamId={id} userId={userId} />
+        <Comments streamId={id} userId={userId} />
       </div>
     );
   }

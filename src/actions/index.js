@@ -70,11 +70,11 @@ export const fetchComment = id => async dispatch => {
   dispatch({ type: FETCH_COMMENT, payload: response.data });
 };
 
-export const createPost = (userId, streamId, comment) => async dispatch => {
+export const createComment = formValues => async dispatch => {
   const response = await streams.post(`/comments`, {
-    userId,
-    streamId,
-    comment
+    ...formValues,
+    time: new Date().toLocaleTimeString(),
+    date: new Date().toLocaleDateString()
   });
   dispatch({ type: CREATE_COMMENT, payload: response.data });
 };

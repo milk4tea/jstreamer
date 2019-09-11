@@ -1,28 +1,29 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { createComment } from "../../actions";
+import CommentForm from "./CommentForm";
+import history from "../../history";
 
 export class UnconnectedCommentInput extends Component {
+  onSubmit = formValues => {
+    const { userId, streamId } = this.props;
+    this.props.createComment({ ...formValues, userId, streamId });
+  };
+
   render() {
     return (
       <div data-test="component-comment-input">
-        <form className="ui reply form">
-          <div className="field">
-            <textarea data-test="input-box" name="comment"></textarea>
-          </div>
-          <button
-            data-test="submit-wbutton"
-            className="ui blue labeled submit icon button"
-          >
-            <i className="icon edit"></i> Add Reply
-          </button>
-        </form>
+        <CommentForm onSubmit={this.onSubmit} />
       </div>
     );
   }
 }
 
 const mapStateToProps = state => {
-  return {};
+  return { comments: state.comments };
 };
 
-export default connect(mapStateToProps)(UnconnectedCommentInput);
+export default connect(
+  mapStateToProps,
+  { createComment }
+)(UnconnectedCommentInput);
